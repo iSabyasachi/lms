@@ -1,0 +1,5 @@
+package com.lms.apigateway.config;
+
+public class ApiGatewayConfiguration {
+
+}

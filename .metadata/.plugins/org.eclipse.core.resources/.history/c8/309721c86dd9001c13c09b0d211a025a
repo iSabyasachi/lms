@@ -1,0 +1,12 @@
+package com.lms.accesslibrary.utility;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.BeansException;
+
+public class LibraryUtility extends BeanUtils{
+	
+	@Override
+	public static void copyProperties(Object source, Object target) throws BeansException {
+		LibraryUtility.copyProperties(source, target);
+	}
+}

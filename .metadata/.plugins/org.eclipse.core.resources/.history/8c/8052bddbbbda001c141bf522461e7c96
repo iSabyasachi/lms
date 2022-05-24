@@ -1,0 +1,21 @@
+package com.lms.recommendlibrary.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.lms.accesslibrary.bean.BookBean;
+
+@RestController
+@RequestMapping("/recommend")
+public class RecommendationController {
+	
+	@GetMapping("/getbook/id/{id}")
+	public Response getBookById(@PathVariable long id) {
+		logger.info("Get Book method - getBookById in BookController class is invoked for the id "+id);
+		BookBean bookBean = bookService.getBookById(id);
+		return bookBean;
+	}
+
+}

@@ -1,0 +1,9 @@
+package com.lms.apigateway.config;
+
+import org.springframework.cloud.gateway.filter.GlobalFilter;
+import org.springframework.stereotype.Component;
+
+@Component
+public class LoggingFilter implements GlobalFilter{
+
+}

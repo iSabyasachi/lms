@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-secret
+  namespace: accesslibrary-project
+type: Opaque
+data:
+  mysql-user-username: lmsapp
+  mysql-user-password: ssm12@TCS2015

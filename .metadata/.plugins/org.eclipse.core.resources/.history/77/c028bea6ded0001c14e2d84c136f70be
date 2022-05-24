@@ -1,0 +1,359 @@
+package com.lms.accesslibrary.service;
+
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.Optional;
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.lms.accesslibrary.bo.BookBO;
+import com.lms.accesslibrary.bo.BookItemBO;
+import com.lms.accesslibrary.bo.BookLending;
+import com.lms.accesslibrary.bo.BookReservation;
+import com.lms.accesslibrary.bo.Fine;
+import com.lms.accesslibrary.bo.UserBO;
+import com.lms.accesslibrary.constant.Constants;
+import com.lms.accesslibrary.dao.BookItemRepository;
+import com.lms.accesslibrary.dao.UserRepository;
+import com.lms.accesslibrary.dto.Checkout;
+import com.lms.accesslibrary.dto.CheckoutResponse;
+import com.lms.accesslibrary.entity.library.book.Book;
+import com.lms.accesslibrary.entity.library.book.BookItem;
+import com.lms.accesslibrary.entity.library.user.User;
+import com.lms.accesslibrary.enums.BookItemStatus;
+import com.lms.accesslibrary.enums.BookStatus;
+import com.lms.accesslibrary.enums.ReservationStatus;
+import com.lms.accesslibrary.enums.UserType;
+import com.lms.accesslibrary.utility.DateFormatUtility;
+
+@Service
+public class CheckoutServiceImpl implements CheckoutService {
+	
+	@Autowired
+	private CheckoutResponse response;
+	
+	@Autowired
+	private UserBO userBO;
+	
+	@Autowired
+	private BookItemBO bookItemBO;
+	
+	@Autowired
+	private BookBO bookBO;
+	
+	@Autowired
+	private BookItemRepository bookItemRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
+	
+	String errCode = "";
+	@Override
+	/**
+	 * Input :
+	 * librarian.id
+	 * member.id
+	 * book.barcode
+	 *  
+	 * Output :
+	 * response
+	 * */
+	public CheckoutResponse checkoutBookItem(Checkout checkout) {
+		/*Find the librarian detail*/		
+		String librarianId = String.valueOf(checkout.getLibrarian().getId());		
+		User librarian = userBO.findRegisteredUser(librarianId, UserType.LIBRARIAN.name());
+		if(librarian == null) {
+			response.setMessage("FAILED!!! User is not found or is not a "+UserType.LIBRARIAN.name()+".");
+			return response;
+		}
+		
+		/*Find the member detail*/		
+		String memberId = String.valueOf(checkout.getMember().getId());		
+		User member = userBO.findRegisteredUser(memberId, UserType.MEMBER.name());
+		if(member == null) {
+			response.setMessage("FAILED!!! User is not found or is not a "+UserType.MEMBER.name()+".");
+			return response;
+		}
+		
+		if (member.getTotalNumBooksCheckedOut() >= Constants.MAX_BOOKS_ISSUED_TO_A_USER) {
+			errCode= "The member has already checked-out maximum number of books";
+			response.setMessage(errCode);	
+			return response;
+		}
+		
+		
+		/*Find the Book Details - By ISBN*/
+		//String isbn = checkout.getBook().getISBN();
+		//System.out.println("isbn "+isbn);
+		//Book book = bookBO.findByISBN(isbn);
+		
+		/*Find the Book Details - By BarCode*/
+		String barcode = checkout.getBook().getBarcode();
+		System.out.println("barcode "+barcode);
+		Book book = bookBO.findBybarcode(barcode);
+		
+		Set<BookItem> bookItems = book.getBookItems();
+		if(null != bookItems && bookItems.size() > 0 && bookItems
+				.stream()
+				.anyMatch(d -> d.getActive() == 1 && d.getStatus().equals(BookStatus.LOANED.name()))) {
+			response.setMessage("FAILED!!! The book is not available to checkout.");	
+			return response; 
+		}
+		
+		/*Check the Reservation - start TO-DO*/
+		/*BookReservation bookReservation = BookReservation.fetchReservationDetails(book.getBarcode());
+		if (bookReservation != null && bookReservation.getUserId() != member.getId()) {
+			// book item has a pending reservation from another user
+			errCode = "This book is reserved by another member";
+			response.setMessage(errCode);	
+		} else if (bookReservation != null) {
+			// book item has a pending reservation from the give member, update it
+			bookReservation.setStatus(ReservationStatus.COMPLETED);
+		}
+		if (!bookItemBO.checkout(book, bookItem, user.getId())) {
+			response.setMessage("FAILED");	
+		}
+		*/
+		/*Check the Reservation - end		 
+		 * */
+		
+		/*Create a new Book Item*/
+		BookItem bookItem = new BookItem();
+		bookItem.setLibrarianId((int)librarian.getId());
+		bookItem.setTrackingNumber(book.getBarcode());
+		bookItem.setBorrowedDate(new Date());
+		bookItem.setDueDate(DateFormatUtility.calculateDueDate());
+		bookItem.setStatus(BookItemStatus.CHECKEDOUT.name());
+		bookItem.setActive(1);
+		member.setTotalNumBooksCheckedOut(member.getTotalNumBooksCheckedOut() + 1);
+		bookItem.setUser(member);
+		book.setStatus(BookStatus.LOANED.name());
+		bookItem.setBook(book);		
+		bookItem.setCreatedTS(Timestamp.from(Instant.now()));
+		bookItem.setUpdatedTS(Timestamp.from(Instant.now()));
+		bookItems.add(bookItem);			
+		
+		bookItemRepository.save(bookItem);
+		
+		response.setMessage("You have successfully checkedout the book with Bar Code : "+bookItem.getTrackingNumber());	
+		return response;
+	}
+
+	@Override
+	/**
+	 * Input :
+	 * librarian.id
+	 * member.id
+	 * member.finePaid (optional)
+	 * book.barcode
+	 *  
+	 * Output :
+	 * response
+	 * */
+	public CheckoutResponse returnBookItem(Checkout checkout) {		
+		/*Find the librarian detail*/		
+		String librarianId = String.valueOf(checkout.getLibrarian().getId());		
+		User librarian = userBO.findRegisteredUser(librarianId, UserType.LIBRARIAN.name());
+		if(librarian == null) {
+			response.setMessage("FAILED!!! User is not found or is not a "+UserType.LIBRARIAN.name()+".");
+			return response;
+		}
+		
+		/*Find the member detail*/		
+		String memberId = String.valueOf(checkout.getMember().getId());		
+		User member = userBO.findRegisteredUser(memberId, UserType.MEMBER.name());
+		if(member == null) {
+			response.setMessage("FAILED!!! User is not found or is not a "+UserType.MEMBER.name()+".");
+			return response;
+		}
+		
+		
+		/*Find the Book Details - By BarCode*/
+		String barcode = checkout.getBook().getBarcode();
+		System.out.println("barcode "+barcode);
+		Book book = bookBO.findBybarcode(barcode);
+		
+		Set<BookItem> bookItems = book.getBookItems();
+		if(null != bookItems && bookItems.size() > 0 && bookItems
+				.stream()
+				.anyMatch(d -> 
+				d.getUser().getId()!= member.getId() && 
+				d.getActive() != 1 && 
+				!d.getStatus().equals(BookStatus.LOANED.name()))) {
+			response.setMessage("FAILED!!! The book cannot be returned.");	
+			return response; 
+		}
+		
+		
+		BookItem bookItem = bookItems.stream().filter(d -> d.getActive() == 1).findFirst().get();
+		bookItem.setStatus(BookItemStatus.CHECKEDIN.name());		
+		member.setTotalNumBooksCheckedOut(member.getTotalNumBooksCheckedOut() - 1);
+		bookItem.setUser(member);
+		bookItem.setActive(0);	
+		bookItem.setCheckinDate(Timestamp.from(Instant.now()));
+		book.setStatus(BookStatus.AVAILABLE.name());		
+		bookItem.setBook(book);
+		bookItem.setUpdatedTS(Timestamp.from(Instant.now()));
+		bookItems.add(bookItem);			
+		
+		bookItemRepository.save(bookItem);
+		
+		response.setMessage("You have successfully returned the book with Bar Code : "+bookItem.getTrackingNumber());	
+		
+		
+		return response;
+		
+		/*TO-DO
+		this.checkForFine(book.getBarcode());
+		BookReservation bookReservation = BookReservation.fetchReservationDetails(book.getBarcode());
+		if (bookReservation != null) {
+			// book item has a pending reservation
+			bookItem.setStatus(BookStatus.RESERVED.name());
+			bookReservation.sendBookAvailableNotification();
+		}*/		
+	}
+
+	@Override
+	public CheckoutResponse renewBookItem(Checkout checkout) {
+		/*Find the librarian detail*/		
+		String librarianId = String.valueOf(checkout.getLibrarian().getId());		
+		User librarian = userBO.findRegisteredUser(librarianId, UserType.LIBRARIAN.name());
+		if(librarian == null) {
+			response.setMessage("FAILED!!! User is not found or is not a "+UserType.LIBRARIAN.name()+".");
+			return response;
+		}
+		
+		/*Find the member detail*/		
+		String memberId = String.valueOf(checkout.getMember().getId());		
+		User member = userBO.findRegisteredUser(memberId, UserType.MEMBER.name());
+		if(member == null) {
+			response.setMessage("FAILED!!! User is not found or is not a "+UserType.MEMBER.name()+".");
+			return response;
+		}
+		
+		/*Find the Book Details - By BarCode*/
+		String barcode = checkout.getBook().getBarcode();
+		System.out.println("barcode "+barcode);
+		Book book = bookBO.findBybarcode(barcode);
+		
+		Set<BookItem> bookItems = book.getBookItems();
+		if(null != bookItems && bookItems.size() > 0 && bookItems
+				.stream()
+				.anyMatch(d -> 
+				d.getUser().getId()!= member.getId() && 
+				d.getActive() != 1 && 
+				!d.getStatus().equals(BookItemStatus.CHECKEDOUT.name()))) {
+			response.setMessage("FAILED!!! The book cannot be renewed.");	
+			return response; 
+		}
+		
+		/*TO-DO Check if the book has not been reserved by other user*/
+		
+		BookItem bookItem = bookItems.stream().filter(d -> d.getActive() == 1).findFirst().get();
+		bookItem.setStatus(BookItemStatus.RENEWED.name());		
+		bookItem.setBook(book);
+		bookItem.setDueDate(DateFormatUtility.calculateDueDateForRenewal(bookItem.getDueDate()));
+		bookItem.setUpdatedTS(Timestamp.from(Instant.now()));
+		bookItems.add(bookItem);
+		
+		bookItemRepository.save(bookItem);
+		
+		response.setMessage("You have successfully renewed the book with Bar Code : "+bookItem.getTrackingNumber());	
+		return response;
+	}
+
+	@Override
+	/**
+	 * Input :
+	 * librarian.id
+	 * member.id
+	 * member.finePaid
+	 * book.barcode (optional)
+	 *  
+	 * Output :
+	 * response
+	 * */
+	public CheckoutResponse payFine(Checkout checkout) {
+		double totalFine = 0.0;
+		/*Find the librarian detail*/		
+		String librarianId = String.valueOf(checkout.getLibrarian().getId());		
+		User librarian = userBO.findRegisteredUser(librarianId, UserType.LIBRARIAN.name());
+		if(librarian == null) {
+			response.setMessage("FAILED!!! User is not found or is not a "+UserType.LIBRARIAN.name()+".");
+			return response;
+		}
+		
+		/*Find the member detail*/		
+		String memberId = String.valueOf(checkout.getMember().getId());		
+		User member = userBO.findRegisteredUser(memberId, UserType.MEMBER.name());
+		if(member == null) {
+			response.setMessage("FAILED!!! User is not found or is not a "+UserType.MEMBER.name()+".");
+			return response;
+		}
+		
+		/*Find the Book Details - By BarCode*/
+		String barcode = checkout.getBook().getBarcode();
+		if(null != barcode && barcode != "") {
+			System.out.println("barcode "+barcode);
+			BookItem bookItem = bookItemBO.findByBarcode(barcode);
+			totalFine = bookItem.getUser().getTotalFine();
+		}else {
+			totalFine = checkForFine(member.getId());
+		}
+		
+		if(totalFine != member.getFinePaid()) {
+			errCode = "Incorrect fine amount!!!";
+			response.setMessage(errCode);
+		}else {
+			member.setFinePaid(totalFine);
+			member.setTotalFine(0.0);
+			userRepository.save(member);
+			response.setMessage("SUCCESS! The total fine now is $0.0");
+		}
+		
+	    return response;
+	}
+	private double checkForFine(long memberId) {
+		double fineAmount = 0.00;
+		BookItem bookItem = bookItemBO.findByUserIdOrderByCreatedTSDesc(String.valueOf(memberId));
+		Date dueDate = bookItem.getDueDate();
+		Date today = new Date();
+		// check if the book has been returned within the due date
+		if (today.compareTo(dueDate) > 0) {
+			long diff = today.getTime() - dueDate.getTime();
+			long diffDays = diff / (24 * 60 * 60 * 1000);
+			fineAmount = Fine.collectFine(bookItem.getUser().getId(), diffDays);
+		}
+		return fineAmount;
+	}
+
+	@Override
+	public CheckoutResponse getFine(Checkout checkout) {		
+		/*Find the librarian detail*/		
+		String librarianId = String.valueOf(checkout.getLibrarian().getId());		
+		User librarian = userBO.findRegisteredUser(librarianId, UserType.LIBRARIAN.name());
+		if(librarian == null) {
+			response.setMessage("FAILED!!! User is not found or is not a "+UserType.LIBRARIAN.name()+".");
+			return response;
+		}
+		
+		/*Find the member detail*/		
+		String memberId = String.valueOf(checkout.getMember().getId());		
+		User member = userBO.findRegisteredUser(memberId, UserType.MEMBER.name());
+		if(member == null) {
+			response.setMessage("FAILED!!! User is not found or is not a "+UserType.MEMBER.name()+".");
+			return response;
+		}
+		
+		double balance = member.getTotalFine() - member.getFinePaid();
+		response.setMessage("Total Fine for the User "+memberId+" is : $"+balance);
+		return response;
+	}
+
+	
+
+}

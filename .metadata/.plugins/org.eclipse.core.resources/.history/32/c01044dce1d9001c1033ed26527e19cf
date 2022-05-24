@@ -1,0 +1,38 @@
+package com.lms.accesslibrary.dao;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Date;
+import java.util.Set;
+
+import org.springframework.jdbc.core.RowMapper;
+
+import com.lms.accesslibrary.entity.library.book.Book;
+import com.lms.accesslibrary.entity.library.book.BookItem;
+
+public class BookMapper implements RowMapper<Book>{
+
+	@Override
+	public Book mapRow(ResultSet rs, int rowNum) throws SQLException {
+		Book book = new Book();		
+		
+		book.setTitle(rs.getString("title"));
+		book.setType(type);
+		book.setSubject(subject);
+		book.getPublisher();
+		book.setPublicationDate(publicationDate);
+		book.setLanguage(language);
+		book.setNumberOfPages(numberOfPages);
+		book.setAuthor(author);
+		book.setDescription(description);
+		book.setGenre(genre);
+		book.setIsReferenceOnly(isReferenceOnly);
+		book.setActive(active);
+		book.setUnit(active);
+		book.setRack_num(rack_num);
+		book.setStatus(status);
+		
+		return null;
+	}
+
+}

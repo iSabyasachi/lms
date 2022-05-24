@@ -1,0 +1,23 @@
+package com.lms.accesslibrary.bean;
+
+import java.beans.JavaBean;
+import java.sql.Timestamp;
+import java.util.Date;
+
+public class UserBean {	
+	private String name;
+	private AddressBean address;
+	private String email;
+	private String phone;
+	private String type;
+	private Date dateOfMembership;	
+	private int blockUser;	
+	private double totalFine;
+	private double finePaid;	
+	private String status;
+	private int totalNumBooksCheckedOut;
+	private Timestamp createdTS;
+	private Timestamp updatedTS;
+	
+	
+}

@@ -1,0 +1,5 @@
+package com.lms.accesslibrary.dao;
+
+public interface iBookDAO {
+
+}

@@ -1,0 +1,132 @@
+package com.lms.accesslibrary.service;
+
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.lms.accesslibrary.bean.BookBean;
+import com.lms.accesslibrary.bo.BookBO;
+import com.lms.accesslibrary.bo.UserBO;
+import com.lms.accesslibrary.dto.Request;
+import com.lms.accesslibrary.dto.Response;
+import com.lms.accesslibrary.entity.library.book.Book;
+import com.lms.accesslibrary.entity.library.user.User;
+import com.lms.accesslibrary.enums.UserType;
+import com.lms.accesslibrary.utility.LibraryUtility;
+
+@Service
+public class BookServiceImpl implements iBookService{
+	
+	@Autowired
+	private Response response;
+	
+	@Autowired
+	private UserBO userBO;
+	
+	@Autowired
+	private BookBO bookBO;
+
+	@Override
+	public Response addBook(Request request) {
+		
+		/*Find the librarian detail*/		
+		String librarianId = String.valueOf(request.getLibrarian().getId());		
+		User librarian = userBO.findRegisteredUser(librarianId, UserType.LIBRARIAN.name());
+		if(librarian == null) {
+			response.setMessage("FAILED!!! User is not found or is not a "+UserType.LIBRARIAN.name()+".");
+			return response;
+		}
+		Book book = request.getBook();
+		//book.setPublicationDate(DateFormatUtility.convertStringToDate(book.getPublicationDate()));
+		book.setCreatedTS(Timestamp.from(Instant.now()));
+		book.setUpdatedTS(Timestamp.from(Instant.now()));
+		bookBO.save(request.getBook());	
+		
+		response.setMessage("You have successfully added the book with ISBN : "+request.getBook().getISBN());	
+		return response;
+	}
+
+	@Override
+	public Response removeBook(Request request) {
+		/*Find the librarian detail*/		
+		String librarianId = String.valueOf(request.getLibrarian().getId());		
+		User librarian = userBO.findRegisteredUser(librarianId, UserType.LIBRARIAN.name());
+		if(librarian == null) {
+			response.setMessage("FAILED!!! User is not found or is not a "+UserType.LIBRARIAN.name()+".");
+			return response;
+		}
+		
+		Book book = bookBO.findBybarcode(request.getBook().getBarcode());
+		
+		if(book == null) {
+			response.setMessage("FAILED!!! Book is not found.");
+			return response;
+		}
+		
+		bookBO.delete(book);	
+		
+		response.setMessage("You have successfully deleted the book with Bar Code : "+request.getBook().getBarcode());	
+		return response;
+		
+	}
+	
+	public BookBean getBookById(long id) {		
+		Book book = bookBO.getBookById(id);
+		BookBean bookBean = new BookBean();		
+		//BeanUtils.copyProperties(book, bookBean);
+		LibraryUtility.copyProperties(book, bookBean);
+		return bookBean;
+	}
+	
+	public Response updateBook(Request request) {
+		/*Find the librarian detail*/		
+		String librarianId = String.valueOf(request.getLibrarian().getId());		
+		User librarian = userBO.findRegisteredUser(librarianId, UserType.LIBRARIAN.name());
+		if(librarian == null) {
+			response.setMessage("FAILED!!! User is not found or is not a "+UserType.LIBRARIAN.name()+".");
+			return response;
+		}
+		Book book = bookBO.findBybarcode(request.getBook().getBarcode());
+		if(book == null) {
+			response.setMessage("FAILED!!! Book is not found.");
+			return response;
+		}
+		
+		if(!LibraryUtility.isEmpty(request.getBook().getTitle())) {
+			book.setTitle(request.getBook().getTitle());
+		}
+		
+		Book updatedBook = bookBO.updateBook(book);
+		BookBean bookBean = new BookBean();
+		LibraryUtility.copyProperties(updatedBook, bookBean);
+		response.setBook(bookBean);
+		response.setMessage("You have successfully updated the book with Bar Code : "+updatedBook.getBarcode());		
+		return response;
+	}
+
+	@Override
+	public BookBean getBookByBarcode(String barcode) {
+		Book book = bookBO.getBookByBarcode(barcode);
+		BookBean bookBean = new BookBean();		
+		LibraryUtility.copyProperties(book, bookBean);
+		return bookBean;
+	}
+	
+	@Override
+	public List<BookBean> getBookByType(String type) {
+		List<Book> books = bookBO.getBookByType(type);
+		List<BookBean> bookBeans = new ArrayList<>();
+		
+		for(Book book : books) {
+			BookBean bookBean = new BookBean();
+			LibraryUtility.copyProperties(book, bookBean);
+			
+		}
+		return books;
+	}
+	
+}

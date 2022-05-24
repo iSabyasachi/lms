@@ -1,0 +1,5 @@
+package com.lms.recommendlibrary.proxy;
+
+public inteface AccessLibraryProxy {
+
+}

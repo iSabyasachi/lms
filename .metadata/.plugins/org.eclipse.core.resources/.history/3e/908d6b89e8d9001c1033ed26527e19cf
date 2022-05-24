@@ -1,0 +1,54 @@
+package com.lms.accesslibrary.bo;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.lms.accesslibrary.dao.BookRepository;
+import com.lms.accesslibrary.dao.LibraryDAOTest;
+import com.lms.accesslibrary.entity.library.book.Book;
+
+@Component
+public class BookBO {
+	
+	@Autowired
+	BookRepository bookRepository;
+	
+	@Autowired
+	BookDAOTest libraryDAO;
+	
+	public Book findByISBN(String isbn) {
+		return bookRepository.findByISBN(isbn);
+	};
+	
+	public Book findBybarcode(String barcode) {
+		return bookRepository.findBybarcode(barcode);
+	};
+
+	public void save(Book book) {
+		bookRepository.save(book);
+	}
+	
+	public void delete(Book book) {
+		bookRepository.delete(book);
+	}
+	
+	public Book getBookById(long id) {		
+		return libraryDAO.getBookById(id);
+	}
+	
+	public Book getBookByBarcode(String barcode) {		
+		return libraryDAO.getBookByBarcode(barcode);
+	}
+	
+	public Book updateBook(Book book){
+		return (Book) libraryDAO.saveOrUpdate(book);
+	};
+	
+	public List<Book> getBookByType(String type) {
+		List<Book> books = libraryDAO.getBookByType(type);
+		return books;
+	}
+	
+}

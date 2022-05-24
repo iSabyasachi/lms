@@ -1,0 +1,61 @@
+package com.lms.accesslibrary.dao;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.lms.accesslibrary.entity.library.book.Book;
+import com.lms.accesslibrary.entity.library.user.User;
+
+@Repository
+@Transactional
+public class UserDAO extends BaseDAO{
+	
+	@PersistenceContext
+	EntityManager entityManager;
+	
+	@Autowired
+	JdbcTemplate jdbcTemplate;
+	
+	
+	public User insertUser(User user){
+	   return entityManager.merge(user);
+	}
+
+	public User updateUser(User user){
+	   return entityManager.merge(user);
+	}
+	
+	public User getUserById(int id) {
+	    return entityManager.find(User.class, id);                
+	}
+	
+	public void deleteUserById(int id){
+		User user = entityManager.find(User.class, id);
+	    entityManager.remove(user);
+	}
+	
+
+	@Override
+	public Book getBookByBarcode(String barcode) {
+		TypedQuery<Book> query =  entityManager.createNamedQuery("getBookByBarcode", Book.class);
+		query.setParameter("barcode", barcode);
+		return query.getSingleResult();		
+	}
+	
+	@Override
+	public List<Book> getBookByType(String type) {
+		String sql = "SELECT * FROM T_BOOK WHERE TYPE = ?";		
+		List<Book> books = jdbcTemplate.query(sql, 
+												new BookMapper(),
+												new Object[] {type});
+		return books;
+	}
+}

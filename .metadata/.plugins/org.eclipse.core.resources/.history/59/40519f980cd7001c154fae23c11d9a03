@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-configmap
+  namespace: accesslibrary-project
+data:
+  database_url: jdbc:mysql://mysql-service:3306/db_customers

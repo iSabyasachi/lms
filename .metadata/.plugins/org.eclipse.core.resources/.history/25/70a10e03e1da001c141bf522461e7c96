@@ -1,0 +1,8 @@
+Access Library : 
+http://localhost:8000/
+http://localhost:8000/access-library/getbook/id/1
+
+Recommend Library :
+http://localhost:8100/
+http://localhost:8100/recommend-library/getbook/id/1
+http://localhost:8100/recommend-library/feign/getbook/id/1

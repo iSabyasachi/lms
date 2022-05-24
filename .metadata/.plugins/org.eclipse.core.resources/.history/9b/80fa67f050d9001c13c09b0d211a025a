@@ -1,0 +1,31 @@
+package com.lms.accesslibrary.entity.library;
+
+import java.sql.Timestamp;
+
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
+public class BaseEntity {
+	
+	@Column(name="date_created", nullable = false)
+	private Timestamp createdTS;
+	
+	@Column(name="last_updated", nullable = false)
+	private Timestamp updatedTS;
+	
+	public Timestamp getCreatedTS() {
+		return createdTS;
+	}
+	public void setCreatedTS(Timestamp createdTS) {
+		this.createdTS = createdTS;
+	}
+	
+	public Timestamp getUpdatedTS() {
+		return updatedTS;
+	}
+	public void setUpdatedTS(Timestamp updatedTS) {
+		this.updatedTS = updatedTS;
+	}
+
+}

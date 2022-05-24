@@ -1,0 +1,20 @@
+spring.application.name=access-library
+server.port=8000
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+#spring.datasource.url=jdbc:mysql://host.docker.internal:3306/full-stack-lms?useSSL=false&useUnicode=yes&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&serverTimezone=UTC
+spring.datasource.url=jdbc:mysql://localhost:3306/full-stack-lms?useSSL=false&useUnicode=yes&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&serverTimezone=UTC
+spring.datasource.username=lmsapp
+spring.datasource.password=ssm12@TCS2015
+
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+spring.jpa.show-sql=true
+
+spring.data.rest.base-path=/api
+
+spring.data.rest.detection-strategy=ANNOTATED
+
+## CHANGE-KUBERNETES START
+management.endpoint.health.probes.enabled=true
+management.health.livenessState.enabled=true
+management.health.readinessState.enabled=true
+## CHANGE-KUBERNETES END

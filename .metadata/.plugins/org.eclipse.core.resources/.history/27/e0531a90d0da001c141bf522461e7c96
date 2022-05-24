@@ -1,0 +1,8 @@
+package com.lms.recommendlibrary.proxy;
+
+import org.springframework.cloud.openfeign.FeignClient;
+
+@FeignClient(name="access",url = "localhost:8000")
+public interface AccessLibraryProxy {
+
+}
