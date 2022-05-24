@@ -15,6 +15,8 @@
 	<description>Library Management System</description>
 	<properties>
 		<java.version>11</java.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 		<spring-cloud.version>2021.0.3-SNAPSHOT</spring-cloud.version>
 	</properties>
 	<dependencies>
@@ -60,6 +62,12 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<image>
+						<name>isabyasachi/lms-${project.artifactId}:${project.version}</name>
+						<pullPolicy>IF_NOT_PRESENT</pullPolicy>
+					</image>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

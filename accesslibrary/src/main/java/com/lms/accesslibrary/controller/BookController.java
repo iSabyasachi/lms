@@ -33,7 +33,7 @@ public class BookController {
 	
 	@GetMapping("/getbook/id/{id}")
 	public BookBean getBookById(@PathVariable long id) {
-		logger.info("Get Book method - getBookById in BookController class is invoked for the id "+id);
+		logger.info("Get Book method -> getBookById in BookController class is invoked for the id "+id);
 		BookBean bookBean = bookService.getBookById(id);
 		return bookBean;
 	}

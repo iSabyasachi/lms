@@ -31,7 +31,7 @@ public class RecommendationController {
 	
 	@GetMapping("/getbook/id/{id}")
 	public Recommendation getBookById(@PathVariable long id) {
-		logger.info("Get Book method - getBookById in RecommendationController class is invoked for the id "+id);
+		logger.info("Get Book method -> getBookById in RecommendationController class is invoked for the id "+id);
 		Recommendation recommendation = new Recommendation();
 		HashMap<String, Long> uriVariables = new HashMap<>();
 		uriVariables.put("id",id);
