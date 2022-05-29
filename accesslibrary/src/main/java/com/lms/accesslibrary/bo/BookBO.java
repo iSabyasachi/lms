@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.lms.accesslibrary.dao.BookDAO;
 import com.lms.accesslibrary.dao.BookRepository;
-import com.lms.accesslibrary.entity.library.book.Book;
+import com.lms.accesslibrary.entity.book.Book;
 
 @Component
 public class BookBO {
@@ -48,6 +48,14 @@ public class BookBO {
 	
 	public List<Book> getBookByType(String type) {
 		List<Book> books = bookDAO.getBookByType(type);
+		return books;
+	}
+	public List<Book> getAllBooks() {
+		List<Book> books = bookDAO.getAllBooks();
+		return books;
+	}
+	public List<Book> getAllBooksByUserId(long id) {
+		List<Book> books = bookDAO.getAllBooksByUserId(id);
 		return books;
 	}
 	

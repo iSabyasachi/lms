@@ -13,8 +13,8 @@ import com.lms.accesslibrary.bo.BookBO;
 import com.lms.accesslibrary.bo.UserBO;
 import com.lms.accesslibrary.dto.Request;
 import com.lms.accesslibrary.dto.Response;
-import com.lms.accesslibrary.entity.library.book.Book;
-import com.lms.accesslibrary.entity.library.user.User;
+import com.lms.accesslibrary.entity.book.Book;
+import com.lms.accesslibrary.entity.user.User;
 import com.lms.accesslibrary.enums.UserType;
 import com.lms.accesslibrary.utility.LibraryUtility;
 
@@ -127,5 +127,31 @@ public class BookServiceImpl implements iBookService{
 		}
 		return bookBeans;
 	}
+
+	@Override
+	public List<BookBean> getAllBooks() {
+		List<Book> books = bookBO.getAllBooks();
+		List<BookBean> bookBeans = new ArrayList<>();		
+		for(Book book : books) {
+			BookBean bookBean = new BookBean();
+			LibraryUtility.copyProperties(book, bookBean);
+			bookBeans.add(bookBean);			
+		}
+		return bookBeans;
+	}
+
+	@Override
+	public List<BookBean> getAllBooksByUserId(long id) {
+		List<Book> books = bookBO.getAllBooksByUserId(id);
+		List<BookBean> bookBeans = new ArrayList<>();		
+		for(Book book : books) {
+			BookBean bookBean = new BookBean();
+			LibraryUtility.copyProperties(book, bookBean);
+			bookBeans.add(bookBean);			
+		}
+		return bookBeans;
+	}
+	
+	
 	
 }

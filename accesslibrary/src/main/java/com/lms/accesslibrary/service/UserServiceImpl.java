@@ -11,8 +11,8 @@ import com.lms.accesslibrary.bo.BookItemBO;
 import com.lms.accesslibrary.bo.UserBO;
 import com.lms.accesslibrary.dto.Request;
 import com.lms.accesslibrary.dto.Response;
-import com.lms.accesslibrary.entity.library.book.Book;
-import com.lms.accesslibrary.entity.library.user.User;
+import com.lms.accesslibrary.entity.book.Book;
+import com.lms.accesslibrary.entity.user.User;
 import com.lms.accesslibrary.enums.UserType;
 
 @Service

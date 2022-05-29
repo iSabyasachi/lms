@@ -1,11 +1,14 @@
 package com.lms.recommendlibrary.dto;
 
+import java.util.List;
+
 import com.lms.recommendlibrary.bean.BookBean;
 
 public class Recommendation {
 	
 	private String message;
-	private BookBean book;
+	private List<BookBean> books;
+	private String port;
 	
 	public String getMessage() {
 		return message;
@@ -15,12 +18,24 @@ public class Recommendation {
 		this.message = message;
 	}
 
-	public BookBean getBook() {
-		return book;
+	public List<BookBean> getBooks() {
+		return books;
 	}
 
-	public void setBook(BookBean book) {
-		this.book = book;
+	public void setBooks(List<BookBean> books) {
+		this.books = books;
 	}
+
+	public String getPort() {
+		return port;
+	}
+
+	public void setPort(String port) {
+		this.port = port;
+	}
+	
+	
+
+	
 
 }

@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Set;
 
-import com.lms.accesslibrary.entity.library.book.BookItem;
+import com.lms.accesslibrary.entity.book.BookItem;
 
 public class BookBean {
 	private Long id;

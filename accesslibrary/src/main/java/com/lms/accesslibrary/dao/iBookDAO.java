@@ -2,7 +2,7 @@ package com.lms.accesslibrary.dao;
 
 import java.util.List;
 
-import com.lms.accesslibrary.entity.library.book.Book;
+import com.lms.accesslibrary.entity.book.Book;
 
 public interface iBookDAO {
 	
@@ -12,5 +12,7 @@ public interface iBookDAO {
 	public List<Book> getBookByType(String type);
 	public void deleteBookById(int id);
 	public Book getBookByBarcode(String barcode);
+	public List<Book> getAllBooks();
+	public List<Book> getAllBooksByUserId(long id);
 
 }

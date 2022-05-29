@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lms.accesslibrary.dao.UserRepository;
-import com.lms.accesslibrary.entity.library.user.User;
+import com.lms.accesslibrary.entity.user.User;
 import com.lms.accesslibrary.enums.UserType;
 
 @Component

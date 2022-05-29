@@ -1,3 +1,15 @@
 1653331177997	Rename package 'com.lms.recommendlibrary.entity'
 1653336580318	Move compilation unit
 1653336696622	Move compilation unit
+1653756701473	Rename type 'CollaborativeFilter'
+1653758136866	Rename type 'RecommenderImplementation'
+1653758261363	Rename type 'CBRecommenderImplementation'
+1653758283288	Copy compilation unit
+1653758757607	Delete element
+1653758799449	Move compilation units
+1653763414144	Delete element
+1653777223989	Delete element
+1653778266246	Rename type 'RecommendationController'
+1653780378491	Rename type 'CBRecommendationController'
+1653781201915	Rename type 'RecommendationController'
+1653781265571	Copy compilation unit

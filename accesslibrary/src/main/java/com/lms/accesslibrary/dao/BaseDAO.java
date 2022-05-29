@@ -3,7 +3,7 @@ package com.lms.accesslibrary.dao;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import com.lms.accesslibrary.entity.library.BaseEntity;
+import com.lms.accesslibrary.entity.BaseEntity;
 
 public abstract class BaseDAO implements iBaseDAO{	
 	

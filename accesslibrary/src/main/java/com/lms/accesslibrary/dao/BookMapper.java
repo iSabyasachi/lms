@@ -7,8 +7,8 @@ import java.util.Set;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.lms.accesslibrary.entity.library.book.Book;
-import com.lms.accesslibrary.entity.library.book.BookItem;
+import com.lms.accesslibrary.entity.book.Book;
+import com.lms.accesslibrary.entity.book.BookItem;
 
 public class BookMapper implements RowMapper<Book>{
 
