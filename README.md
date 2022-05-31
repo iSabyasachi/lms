@@ -71,30 +71,30 @@ Git Commands:
 Reference : https://www.w3schools.com/git/default.asp?remote=github
 …or create a new repository on the command line
 
-echo "# lms" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/iSabyasachi/lms.git
-git push -u origin main
+- echo "# lms" >> README.md
+	- git init
+	- git add README.md
+	- git commit -m "first commit"
+	- git branch -M main
+	- git remote add origin https://github.com/iSabyasachi/lms.git
+	- git push -u origin main
 
 …or push an existing repository from the command line
-git remote add origin https://github.com/iSabyasachi/lms.git
-git branch -M main
-git push -u origin main
+	- git remote add origin https://github.com/iSabyasachi/lms.git
+	- git branch -M main
+	- git push -u origin main
 
 Mysql on Docker:
-1. Pull the image from Docker Hub 
-MySql Image:
-docker pull mysql 
+- 1. Pull the image from Docker Hub 
+	- MySql Image:
+	- docker pull mysql 
 
-2. Run Docker Image
-docker run -d -p 3309:3306 --name='mysql_test' --env="MYSQL_ROOT_PASSWORD=mysql007" -d mysql
-docker exec -it mysql_test mysql -uroot -p
+- 2. Run Docker Image
+	- docker run -d -p 3309:3306 --name='mysql_test' --env="MYSQL_ROOT_PASSWORD=mysql007" -d mysql
+	- docker exec -it mysql_test mysql -uroot -p
 
-3. Find details about the Mysql server :
-more /etc/*release
-Find IP Address:
-hostname -I
-docker ps
+- 3. Find details about the Mysql server :
+	- more /etc/*release
+	- Find IP Address:
+	- hostname -I
+	- docker ps
