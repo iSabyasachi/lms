@@ -6,6 +6,7 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\workspace\lms\searchlibrary"/>
 			<item value="C:\workspace\lms\api-gateway"/>
 			<item value="C:\workspace\lms\naming-server"/>
 			<item value="C:\workspace\lms\recommendlibrary"/>

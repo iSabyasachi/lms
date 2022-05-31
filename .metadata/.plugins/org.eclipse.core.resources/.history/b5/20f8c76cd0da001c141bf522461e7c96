@@ -1,8 +1,0 @@
-package com.lms.recommendlibrary.proxy;
-
-import org.springframework.cloud.openfeign.FeignClient;
-
-@FeignClient(name="access",)
-public interface AccessLibraryProxy {
-
-}

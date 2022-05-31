@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: Secret
-metadata:
-  name: mysql-secret
-  namespace: default
-type: Opaque
-data:
-  mysql-user-username: bG1zYXBw
-  mysql-user-password: c3NtMTJAVENTMjAxNQ==
