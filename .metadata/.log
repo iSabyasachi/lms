@@ -9242,3 +9242,16 @@ java.lang.Error: SWT Resource was not properly disposed
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:596)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1467)
+
+!ENTRY org.eclipse.lsp4e 4 0 2022-05-31 10:59:17.553
+!MESSAGE [Error]	TypeError: Cannot read properties of undefined (reading 'filter')
+    at Object.filterInvalidCustomTags (C:\Users\ssaby\.p2\pool\plugins\org.eclipse.wildwebdeveloper_0.5.20.202202041634\node_modules\yaml-language-server\out\server\src\languageservice\utils\arrUtils.js:58:23)
+    at Object.getCustomTags (C:\Users\ssaby\.p2\pool\plugins\org.eclipse.wildwebdeveloper_0.5.20.202202041634\node_modules\yaml-language-server\out\server\src\languageservice\parser\custom-tag-provider.js:51:37)
+    at Object.parse (C:\Users\ssaby\.p2\pool\plugins\org.eclipse.wildwebdeveloper_0.5.20.202202041634\node_modules\yaml-language-server\out\server\src\languageservice\parser\yamlParser07.js:26:43)
+    at YamlDocuments.ensureCache (C:\Users\ssaby\.p2\pool\plugins\org.eclipse.wildwebdeveloper_0.5.20.202202041634\node_modules\yaml-language-server\out\server\src\languageservice\parser\yaml-documents.js:201:40)
+    at YamlDocuments.getYamlDocument (C:\Users\ssaby\.p2\pool\plugins\org.eclipse.wildwebdeveloper_0.5.20.202202041634\node_modules\yaml-language-server\out\server\src\languageservice\parser\yaml-documents.js:179:14)
+    at YAMLValidation.<anonymous> (C:\Users\ssaby\.p2\pool\plugins\org.eclipse.wildwebdeveloper_0.5.20.202202041634\node_modules\yaml-language-server\out\server\src\languageservice\services\yamlValidation.js:60:74)
+    at Generator.next (<anonymous>)
+    at C:\Users\ssaby\.p2\pool\plugins\org.eclipse.wildwebdeveloper_0.5.20.202202041634\node_modules\yaml-language-server\out\server\src\languageservice\services\yamlValidation.js:13:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\ssaby\.p2\pool\plugins\org.eclipse.wildwebdeveloper_0.5.20.202202041634\node_modules\yaml-language-server\out\server\src\languageservice\services\yamlValidation.js:9:12)

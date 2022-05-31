@@ -7,6 +7,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lms.accesslibrary.bean.BookBean;
 import com.lms.accesslibrary.bo.BookBO;
 import com.lms.accesslibrary.bo.BookItemBO;
 import com.lms.accesslibrary.bo.UserBO;
@@ -20,6 +21,7 @@ import com.lms.accesslibrary.enums.BookItemStatus;
 import com.lms.accesslibrary.enums.BookStatus;
 import com.lms.accesslibrary.enums.UserType;
 import com.lms.accesslibrary.utility.DateFormatUtility;
+import com.lms.accesslibrary.utility.LibraryUtility;
 
 @Service
 public class CheckoutServiceImpl implements iCheckoutService {
@@ -82,7 +84,10 @@ public class CheckoutServiceImpl implements iCheckoutService {
 		
 		/*Create a new Book Item*/
 		BookItem bookItem=bookItemBO.loan(librarian, member, book, BookItemStatus.CHECKEDOUT.name());
-		response.setMessage("You have successfully checkedout the book with Bar Code : "+bookItem.getBarcode());	
+		response.setMessage("You have successfully checkedout the book with Bar Code ->: "+bookItem.getBarcode());
+		BookBean bookBean = new BookBean();
+		LibraryUtility.copyProperties(bookItem.getBook(), bookBean);
+		response.setBook(bookBean);	
 		return response;
 	}
 
