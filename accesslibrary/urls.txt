@@ -1,3 +1,8 @@
+Jenkins:
+http://localhost:8081/Jenkins
+User Id : admin
+Password : C:\ProgramData\Jenkins\.jenkins\secrets
+
 Access Library : 
 http://localhost:8000/
 http://localhost:8000/access/getbook/id/1
