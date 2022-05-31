@@ -1,4 +1,4 @@
-package com.lms.accesslibrary.entity.user;
+package com.lms.accesslibrary.entity;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -14,8 +14,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
-import com.lms.accesslibrary.entity.BaseEntity;
 
 @Entity
 @Table(name="t_account_user")

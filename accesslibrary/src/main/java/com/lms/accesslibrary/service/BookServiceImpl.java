@@ -13,8 +13,8 @@ import com.lms.accesslibrary.bo.BookBO;
 import com.lms.accesslibrary.bo.UserBO;
 import com.lms.accesslibrary.dto.Request;
 import com.lms.accesslibrary.dto.Response;
-import com.lms.accesslibrary.entity.book.Book;
-import com.lms.accesslibrary.entity.user.User;
+import com.lms.accesslibrary.entity.Book;
+import com.lms.accesslibrary.entity.User;
 import com.lms.accesslibrary.enums.UserType;
 import com.lms.accesslibrary.utility.LibraryUtility;
 
@@ -40,7 +40,7 @@ public class BookServiceImpl implements iBookService{
 			response.setMessage("FAILED!!! User is not found or is not a "+UserType.LIBRARIAN.name()+".");
 			return response;
 		}
-		Book book = request.getBook();
+		Book book = request.getBook();	
 		//book.setPublicationDate(DateFormatUtility.convertStringToDate(book.getPublicationDate()));
 		book.setCreatedTS(Timestamp.from(Instant.now()));
 		book.setUpdatedTS(Timestamp.from(Instant.now()));

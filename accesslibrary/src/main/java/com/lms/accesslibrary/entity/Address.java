@@ -1,4 +1,4 @@
-package com.lms.accesslibrary.entity.user;
+package com.lms.accesslibrary.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

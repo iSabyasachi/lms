@@ -2,7 +2,7 @@ package com.lms.accesslibrary.dao;
 
 import java.util.List;
 
-import com.lms.accesslibrary.entity.book.Book;
+import com.lms.accesslibrary.entity.Book;
 
 public interface iBookDAO {
 	

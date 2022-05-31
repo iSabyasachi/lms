@@ -11,8 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.lms.accesslibrary.entity.book.Book;
-import com.lms.accesslibrary.entity.user.User;
+import com.lms.accesslibrary.entity.Book;
 
 @Repository
 @Transactional

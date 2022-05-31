@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.lms.accesslibrary.entity.book.Book;
+import com.lms.accesslibrary.entity.Book;
 
 
 @RepositoryRestResource(collectionResourceRel = "book", path = "books")

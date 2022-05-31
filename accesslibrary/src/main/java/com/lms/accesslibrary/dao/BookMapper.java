@@ -2,13 +2,10 @@ package com.lms.accesslibrary.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
-import java.util.Set;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.lms.accesslibrary.entity.book.Book;
-import com.lms.accesslibrary.entity.book.BookItem;
+import com.lms.accesslibrary.entity.Book;
 
 public class BookMapper implements RowMapper<Book>{
 

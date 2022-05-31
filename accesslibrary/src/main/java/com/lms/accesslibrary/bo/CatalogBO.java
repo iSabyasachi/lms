@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import com.lms.accesslibrary.entity.book.Book;
+import com.lms.accesslibrary.entity.Book;
 
 public class CatalogBO{
 

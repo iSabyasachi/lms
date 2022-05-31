@@ -2,6 +2,7 @@ package com.lms.recommendlibrary.bean;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -178,6 +179,23 @@ public class BookBean {
 	}
 	public void setUpdatedTS(Timestamp updatedTS) {
 		this.updatedTS = updatedTS;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(title);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BookBean other = (BookBean) obj;
+		return Objects.equals(title, other.title);
 	}
 
 	

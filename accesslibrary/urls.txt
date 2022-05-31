@@ -16,6 +16,8 @@ API Gateway :
 http://localhost:8765/access-library/access/getbook/id/1
 http://localhost:8765/recommend-library/recommend/getbook/id/1
 http://localhost:8765/recommend-library/recommend/feign/getbook/id/1
+http://localhost:8765/search-library/searchallbooks
+http://localhost:8765/search-library/searchbyauthor/author/Alicia
 
 After Enabled Configuration :
 http://localhost:8765/access/getbook/id/1
@@ -24,3 +26,5 @@ http://localhost:8765/recommend/feign/getbook/id/1
 http://localhost:8765/access/getallbooks/
 http://localhost:8765/access/getbooksbyuserid/userid/2
 http://localhost:8765/recommend/getcbrecommendation/type/BOOK/userid/2
+http://localhost:8765/search/searchbyauthor/author/Alicia
+http://localhost:8765/search/searchallbooks

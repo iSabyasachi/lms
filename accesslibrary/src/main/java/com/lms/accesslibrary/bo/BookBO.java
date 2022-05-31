@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.lms.accesslibrary.dao.BookDAO;
 import com.lms.accesslibrary.dao.BookRepository;
-import com.lms.accesslibrary.entity.book.Book;
+import com.lms.accesslibrary.entity.Book;
 
 @Component
 public class BookBO {

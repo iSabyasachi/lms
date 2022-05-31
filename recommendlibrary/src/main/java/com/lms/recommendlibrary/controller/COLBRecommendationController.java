@@ -14,21 +14,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lms.recommendlibrary.bean.BookBean;
 import com.lms.recommendlibrary.dto.Recommendation;
-import com.lms.recommendlibrary.proxy.AccessLibraryProxy;
-import com.lms.recommendlibrary.service.iRecommendService;
+import com.lms.recommendlibrary.service.FilterService;
 
 @RestController
 @RequestMapping("/recommend")
 public class COLBRecommendationController {
 	
-	private Logger logger = LoggerFactory.getLogger(COLBRecommendationController.class);
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	///@Autowired
-	AccessLibraryProxy proxy;	
 	
 	@Autowired
-	@Qualifier("COLBS")
-	private iRecommendService recommenderService;		
+	@Qualifier("COLBF")
+	private FilterService filterService;	
 	
 	
 	@Autowired
@@ -39,7 +36,7 @@ public class COLBRecommendationController {
 		logger.info("Get Recommendation By Type in COLBRecommendationController class is invoked for the id "+id);
 		
 		Recommendation recommendation = new Recommendation();		
-		List<BookBean> books = recommenderService.recommendBooks(id);
+		List<BookBean> books = filterService.getRecommendations(id);
 		recommendation.setBooks(books);
 		
 		String port = environment.getProperty("local.server.port");
@@ -47,47 +44,4 @@ public class COLBRecommendationController {
 		recommendation.setMessage("SUCCESS");
 		return recommendation;
 	}
-	
-	/*
-	@GetMapping("/getbook/id/{id}")
-	public Recommendation getBookById(@PathVariable long id) {
-		logger.info("Get Book method -> getBookById in RecommendationController class is invoked for the id "+id);
-		Recommendation recommendation = new Recommendation();
-		HashMap<String, Long> uriVariables = new HashMap<>();
-		uriVariables.put("id",id);
-		
-		ResponseEntity<BookBean> responseEntity = new RestTemplate().getForEntity
-				("http://localhost:8000/access/getbook/id/{id}", 
-						BookBean.class, uriVariables);
-		
-		BookBean bean = responseEntity.getBody();
-		List<BookBean> bookBeans = new ArrayList<>();
-		bookBeans.add(bean);
-		
-		recommendation.setBooks(bookBeans);		
-		
-		String port = environment.getProperty("local.server.port");
-		recommendation.setMessage("PORT "+port);
-		
-		return recommendation;
-	}
-	
-	@GetMapping("/feign/getbook/id/{id}")
-	public Recommendation getBookByIdFeign(@PathVariable long id) {
-		logger.info("Get Book method - getBookByIdFeign in RecommendationController class is invoked for the id "+id);
-		Recommendation recommendation = new Recommendation();
-		
-		BookBean bean = proxy.getBookById(id);
-		
-		List<BookBean> bookBeans = new ArrayList<>();
-		bookBeans.add(bean);
-		
-		recommendation.setBooks(bookBeans);
-
-		String port = environment.getProperty("local.server.port");
-		recommendation.setPort("PORT "+port+" Feign");
-		recommendation.setMessage("SUCCESS");
-		return recommendation;
-	}
-	*/
 }

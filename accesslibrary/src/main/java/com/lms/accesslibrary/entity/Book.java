@@ -1,4 +1,4 @@
-package com.lms.accesslibrary.entity.book;
+package com.lms.accesslibrary.entity;
 
 import java.util.Date;
 import java.util.Set;
@@ -13,8 +13,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.lms.accesslibrary.entity.BaseEntity;
 
 @Entity
 @Table(name="t_book")

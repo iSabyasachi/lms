@@ -2,13 +2,61 @@ version: '3.7'
 
 services:
 
-  accesslibrary:
-    image: isabyasachi/lms-accesslibrary:0.0.1-SNAPSHOT
-    mem_limit: 1024m
+  naming-server:
+    image: isabyasachi/lms-naming-server:0.0.1-SNAPSHOT
+    mem_limit: 700m
     ports:
-      - "8080:8080"
+      - "8761:8761"
     networks:
       - lms-network
+   
+  api-gateway:
+    image: isabyasachi/lms-api-gateway:0.0.1-SNAPSHOT
+    mem_limit: 700m
+    ports:
+      - "8765:8765"
+    networks:
+      - lms-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+      
+  access-library:
+    image: isabyasachi/lms-accesslibrary:0.0.2-SNAPSHOT
+    mem_limit: 1000m
+    ports:
+      - "8000:8000"
+    networks:
+      - lms-network
+    depends_on:
+      - naming-server      
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+  
+  recommend-library:
+    image: isabyasachi/lms-recommendlibrary:0.0.1-SNAPSHOT
+    mem_limit: 700m
+    ports:
+      - "8100:8100"
+    networks:
+      - lms-network
+    depends_on:
+      - naming-server      
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+      
+  search-library:
+    image: isabyasachi/lms-searchlibrary:0.0.1-SNAPSHOT
+    mem_limit: 700m
+    ports:
+      - "8200:8200"
+    networks:
+      - lms-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
 
 networks:
   lms-network:

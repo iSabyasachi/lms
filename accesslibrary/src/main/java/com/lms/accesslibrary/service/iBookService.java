@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import com.lms.accesslibrary.bean.BookBean;
 import com.lms.accesslibrary.dto.Request;
 import com.lms.accesslibrary.dto.Response;
-import com.lms.accesslibrary.entity.book.Book;
 
 @Service
 public interface iBookService {

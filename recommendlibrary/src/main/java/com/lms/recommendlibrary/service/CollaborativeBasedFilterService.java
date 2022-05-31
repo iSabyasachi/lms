@@ -1,4 +1,4 @@
-package com.lms.recommendlibrary.bo;
+package com.lms.recommendlibrary.service;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import com.lms.recommendlibrary.proxy.AccessLibraryProxy;
 
 @Service("COLBF")
 //@Primary
-public class CollaborativeBasedFilter implements Filter{
+public class CollaborativeBasedFilterService implements FilterService{
 	
 	@Autowired
 	private AccessLibraryProxy accessLibraryProxy;

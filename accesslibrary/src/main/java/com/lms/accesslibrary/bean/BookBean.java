@@ -2,9 +2,6 @@ package com.lms.accesslibrary.bean;
 
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.Set;
-
-import com.lms.accesslibrary.entity.book.BookItem;
 
 public class BookBean {
 	private Long id;

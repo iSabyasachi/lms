@@ -23,6 +23,8 @@ public class ApiGatewayConfiguration {
 						.uri("lb://recommend-library"))
 				.route(p -> p.path("/recommend/feign/**")
 						.uri("lb://recommend-library"))
+				.route(p -> p.path("/search/**")
+						.uri("lb://search-library"))
 				.build();
 	}
 }

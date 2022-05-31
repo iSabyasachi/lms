@@ -1,4 +1,4 @@
-package com.lms.accesslibrary.entity.book;
+package com.lms.accesslibrary.entity;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -15,8 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
-import com.lms.accesslibrary.entity.user.User;
 
 @Entity
 @Table(name="t_book_item")
