@@ -1,7 +1,0 @@
-package com.lms.accesslibrary.dao;
-
-public interface iDAO {
-	void flush();
-	
-	void merge(BaseEntity data);
-}

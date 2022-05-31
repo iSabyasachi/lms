@@ -1,6 +1,6 @@
 package com.lms.accesslibrary.dao;
 
-import com.lms.accesslibrary.entity.library.user.User;
+import com.lms.accesslibrary.entity.User;
 
 public interface iUserDAO {	
 

@@ -2,9 +2,22 @@ package com.lms.recommendlibrary.bean;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.Objects;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Component;
+
+//@Component
+//@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class BookBean {
-	
+	Logger logger = LoggerFactory.getLogger(this.getClass());
 	private Long id;
 	private String ISBN;
 	private String barcode;	
@@ -25,6 +38,26 @@ public class BookBean {
 	private String status;	
 	private Timestamp createdTS;
 	private Timestamp updatedTS;
+	
+	public BookBean() {
+		
+	};
+	
+	public BookBean(String title){
+		super();
+		this.title = title;
+	}
+	/*
+	@PostConstruct
+	public void postConstruct() {
+		logger.info("7. In BookBean post constructor method.");
+	}
+	
+	@PreDestroy
+	public void preDestroy() {
+		logger.info("8. In BookBean pre destory method.");
+	}
+	*/
 	public Long getId() {
 		return id;
 	}
@@ -146,6 +179,23 @@ public class BookBean {
 	}
 	public void setUpdatedTS(Timestamp updatedTS) {
 		this.updatedTS = updatedTS;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(title);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BookBean other = (BookBean) obj;
+		return Objects.equals(title, other.title);
 	}
 
 	

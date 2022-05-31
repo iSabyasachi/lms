@@ -2,9 +2,7 @@ package com.lms.accesslibrary.dto;
 
 import org.springframework.stereotype.Component;
 
-import com.lms.accesslibrary.entity.library.book.Book;
-import com.lms.accesslibrary.entity.library.book.BookItem;
-import com.lms.accesslibrary.entity.library.user.User;
+import com.lms.accesslibrary.entity.BookItem;
 
 import lombok.Data;
 

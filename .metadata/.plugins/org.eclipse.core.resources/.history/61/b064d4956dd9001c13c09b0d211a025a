@@ -1,7 +1,0 @@
-package com.lms.accesslibrary.utility;
-
-public class LibraryUtility extends BeanUtils{
-	public void copyProperties() {
-		
-	}
-}

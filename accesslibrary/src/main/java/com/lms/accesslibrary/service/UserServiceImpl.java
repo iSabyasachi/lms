@@ -7,12 +7,10 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.lms.accesslibrary.bo.BookItemBO;
 import com.lms.accesslibrary.bo.UserBO;
 import com.lms.accesslibrary.dto.Request;
 import com.lms.accesslibrary.dto.Response;
-import com.lms.accesslibrary.entity.library.book.Book;
-import com.lms.accesslibrary.entity.library.user.User;
+import com.lms.accesslibrary.entity.User;
 import com.lms.accesslibrary.enums.UserType;
 
 @Service

@@ -1,6 +1,6 @@
 package com.lms.accesslibrary.dao;
 
-import com.lms.accesslibrary.entity.library.BaseEntity;
+import com.lms.accesslibrary.entity.BaseEntity;
 
 public interface iBaseDAO {
 	void flush();

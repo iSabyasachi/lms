@@ -52,6 +52,19 @@ public class BookController {
 		return bookBeans;
 	}
 	
+	@GetMapping("/getbooksbyuserid/userid/{id}")
+	public List<BookBean> getAllBooksByUserId(@PathVariable long id) {
+		logger.info("Get Book method -> getAllBooksByUserId in BookController class is invoked for the id "+id);
+		List<BookBean> bookBeanList = bookService.getAllBooksByUserId(id);
+		return bookBeanList;
+	}
+	@GetMapping("/getallbooks")
+	public List<BookBean> getAllBooks() {
+		logger.info("Get Book method -> getAllBooks in BookController class is invoked");
+		List<BookBean> bookBeanList = bookService.getAllBooks();
+		return bookBeanList;
+	}
+	
 	@PostMapping("/addbook")
     public Response addBook(@RequestBody Request request) {
 		logger.info("Add Book method in BookController class is invoked.");

@@ -13,8 +13,8 @@ import com.lms.accesslibrary.bo.BookBO;
 import com.lms.accesslibrary.bo.UserBO;
 import com.lms.accesslibrary.dto.Request;
 import com.lms.accesslibrary.dto.Response;
-import com.lms.accesslibrary.entity.library.book.Book;
-import com.lms.accesslibrary.entity.library.user.User;
+import com.lms.accesslibrary.entity.Book;
+import com.lms.accesslibrary.entity.User;
 import com.lms.accesslibrary.enums.UserType;
 import com.lms.accesslibrary.utility.LibraryUtility;
 
@@ -40,7 +40,7 @@ public class BookServiceImpl implements iBookService{
 			response.setMessage("FAILED!!! User is not found or is not a "+UserType.LIBRARIAN.name()+".");
 			return response;
 		}
-		Book book = request.getBook();
+		Book book = request.getBook();	
 		//book.setPublicationDate(DateFormatUtility.convertStringToDate(book.getPublicationDate()));
 		book.setCreatedTS(Timestamp.from(Instant.now()));
 		book.setUpdatedTS(Timestamp.from(Instant.now()));
@@ -127,5 +127,31 @@ public class BookServiceImpl implements iBookService{
 		}
 		return bookBeans;
 	}
+
+	@Override
+	public List<BookBean> getAllBooks() {
+		List<Book> books = bookBO.getAllBooks();
+		List<BookBean> bookBeans = new ArrayList<>();		
+		for(Book book : books) {
+			BookBean bookBean = new BookBean();
+			LibraryUtility.copyProperties(book, bookBean);
+			bookBeans.add(bookBean);			
+		}
+		return bookBeans;
+	}
+
+	@Override
+	public List<BookBean> getAllBooksByUserId(long id) {
+		List<Book> books = bookBO.getAllBooksByUserId(id);
+		List<BookBean> bookBeans = new ArrayList<>();		
+		for(Book book : books) {
+			BookBean bookBean = new BookBean();
+			LibraryUtility.copyProperties(book, bookBean);
+			bookBeans.add(bookBean);			
+		}
+		return bookBeans;
+	}
+	
+	
 	
 }

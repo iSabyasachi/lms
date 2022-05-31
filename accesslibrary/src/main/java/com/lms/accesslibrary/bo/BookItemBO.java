@@ -12,9 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lms.accesslibrary.dao.BookItemRepository;
-import com.lms.accesslibrary.entity.library.book.Book;
-import com.lms.accesslibrary.entity.library.book.BookItem;
-import com.lms.accesslibrary.entity.library.user.User;
+import com.lms.accesslibrary.entity.Book;
+import com.lms.accesslibrary.entity.BookItem;
+import com.lms.accesslibrary.entity.User;
 import com.lms.accesslibrary.enums.BookItemStatus;
 import com.lms.accesslibrary.enums.BookStatus;
 import com.lms.accesslibrary.utility.DateFormatUtility;

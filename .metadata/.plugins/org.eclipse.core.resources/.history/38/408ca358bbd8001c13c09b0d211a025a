@@ -1,5 +1,0 @@
-package com.lms.accesslibrary.dao;
-
-public abstarct class BaseDAO {
-
-}

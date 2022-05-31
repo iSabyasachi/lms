@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lms.accesslibrary.dto.Request;
 import com.lms.accesslibrary.dto.Response;
-import com.lms.accesslibrary.entity.library.user.User;
+import com.lms.accesslibrary.entity.User;
 import com.lms.accesslibrary.service.iUserService;
 
 @RestController

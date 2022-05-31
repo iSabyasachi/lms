@@ -11,8 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.lms.accesslibrary.entity.library.book.Book;
-import com.lms.accesslibrary.entity.library.user.User;
+import com.lms.accesslibrary.entity.Book;
 
 @Repository
 @Transactional
@@ -56,5 +55,18 @@ public class BookDAO extends BaseDAO implements iBookDAO{
 												new BookMapper(),
 												new Object[] {type});
 		return books;
+	}
+	
+	@Override
+	public List<Book> getAllBooks() {
+		TypedQuery<Book> query =  entityManager.createNamedQuery("getAllBooks", Book.class);		
+		return query.getResultList();	
+	}
+	
+	@Override
+	public List<Book> getAllBooksByUserId(long id) {
+		TypedQuery<Book> query =  entityManager.createNamedQuery("getAllBooksByUserId", Book.class);
+		query.setParameter("id", id);
+		return query.getResultList();		
 	}
 }

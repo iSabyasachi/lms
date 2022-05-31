@@ -1,7 +1,0 @@
-package com.lms.accesslibrary.dao;
-
-import org.springframework.jdbc.core.RowMapper;
-
-public class BookMapper implements RowMapper{
-
-}
