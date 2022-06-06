@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.lms.accesslibrary.entity.Book;
 
-public interface iBookDAO {
+public interface IBookDAO {
 	
 	public Book insertBook(Book book);
 	public Book updateBook(Book book);		

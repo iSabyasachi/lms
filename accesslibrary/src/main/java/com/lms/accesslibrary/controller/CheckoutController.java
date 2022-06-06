@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lms.accesslibrary.dto.Checkout;
 import com.lms.accesslibrary.dto.CheckoutResponse;
-import com.lms.accesslibrary.service.iCheckoutService;
+import com.lms.accesslibrary.service.ICheckoutService;
 
 @RestController
 @RequestMapping("/access")
@@ -20,9 +20,9 @@ public class CheckoutController {
 	private Logger logger = LoggerFactory.getLogger(CheckoutController.class);
 	
 	@Autowired
-	private iCheckoutService checkoutService;
+	private ICheckoutService checkoutService;
 
-	public CheckoutController(iCheckoutService checkoutService) {		
+	public CheckoutController(ICheckoutService checkoutService) {		
 		this.checkoutService = checkoutService;
 	}
 	

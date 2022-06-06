@@ -2,7 +2,7 @@ package com.lms.accesslibrary.dao;
 
 import com.lms.accesslibrary.entity.User;
 
-public interface iUserDAO {	
+public interface IUserDAO {	
 
 	public User insertUser(User user);
 	public User updateUser(User user);

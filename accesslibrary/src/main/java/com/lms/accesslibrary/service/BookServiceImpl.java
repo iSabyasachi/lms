@@ -19,7 +19,7 @@ import com.lms.accesslibrary.enums.UserType;
 import com.lms.accesslibrary.utility.LibraryUtility;
 
 @Service
-public class BookServiceImpl implements iBookService{
+public class BookServiceImpl implements IBookService{
 	
 	@Autowired
 	private Response response;

@@ -9,7 +9,7 @@ import com.lms.accesslibrary.dto.Request;
 import com.lms.accesslibrary.dto.Response;
 
 @Service
-public interface iBookService {
+public interface IBookService {
 	public Response addBook(Request request);
 	public Response removeBook(Request request);
 	public BookBean getBookById(long id);

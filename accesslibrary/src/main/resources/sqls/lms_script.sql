@@ -290,6 +290,8 @@ VALUES (103, 'Baripada', 'India', 'Odisha','Betanati','757025');
 INSERT INTO t_address (id, city, country, state, street, zip_code)
 VALUES (104, 'Jefferson City', 'USA', 'Missouri','Southwest Blvd','65109');
 
+INSERT INTO t_address (id, city, country, state, street, zip_code)
+VALUES (106, 'Albany', 'USA', 'New York','Guilderland','12084');
 
 INSERT INTO t_account_user (id, name, email, phone, user_type, membership_date, block_user, total_fine,
 fine_paid, status, address_id, num_books_checked_out, date_created, last_updated)
@@ -311,6 +313,9 @@ INSERT INTO t_account_user (id, name, email, phone, user_type, membership_date, 
 fine_paid, status, address_id, num_books_checked_out, date_created, last_updated)
 VALUES (5, 'Rehan', 'rehan@gmail.com', '5734620804','MEMBER','2022-05-31',0,0.00,0.00,'ACTIVE',104,0,NOW(),NOW());
 
+INSERT INTO t_account_user (id, name, email, phone, user_type, membership_date, block_user, total_fine,
+fine_paid, status, address_id, num_books_checked_out, date_created, last_updated)
+VALUES (6, 'Anshu', 'anshu@gmail.com', '5734620805','MEMBER','2022-05-31',0,0.00,0.00,'ACTIVE',106,0,NOW(),NOW());
 -- -----------------------------------------------------
 -- Table structure for table `t_book_item`
 -- -----------------------------------------------------
