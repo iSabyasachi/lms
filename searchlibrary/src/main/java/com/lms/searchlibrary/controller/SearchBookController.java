@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lms.searchlibrary.bean.BookBean;
-import com.lms.searchlibrary.service.iSearchService;
+import com.lms.searchlibrary.service.ISearchService;
 
 @RestController
 @RequestMapping("/search")
@@ -20,7 +20,7 @@ public class SearchBookController {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired	
-	private iSearchService searchService;	
+	private ISearchService searchService;	
 	
 	@GetMapping("/searchallbooks")
 	public List<BookBean> searchAllBooks(){

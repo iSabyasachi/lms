@@ -5,7 +5,7 @@ import javax.persistence.PersistenceContext;
 
 import com.lms.accesslibrary.entity.BaseEntity;
 
-public abstract class BaseDAO implements iBaseDAO{	
+public abstract class BaseDAO implements IBaseDAO{	
 	
 	@PersistenceContext
 	EntityManager entityManager;

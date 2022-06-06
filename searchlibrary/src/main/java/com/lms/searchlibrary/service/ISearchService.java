@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.lms.searchlibrary.bean.BookBean;
 
-public interface iSearchService {
+public interface ISearchService {
 	
 	public List<BookBean> searchByTitle(String title);
 

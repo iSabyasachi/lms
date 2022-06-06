@@ -10,7 +10,7 @@ import com.lms.accesslibrary.entity.User;
 
 @Repository
 @Transactional
-public class UserDAO extends BaseDAO implements iUserDAO{
+public class UserDAO extends BaseDAO implements IUserDAO{
 	
 	@PersistenceContext
 	EntityManager entityManager;

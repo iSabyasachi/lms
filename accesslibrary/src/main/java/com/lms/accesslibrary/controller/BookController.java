@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.lms.accesslibrary.bean.BookBean;
 import com.lms.accesslibrary.dto.Request;
 import com.lms.accesslibrary.dto.Response;
-import com.lms.accesslibrary.service.iBookService;
+import com.lms.accesslibrary.service.IBookService;
 
 @RestController
 @RequestMapping("/access")
@@ -25,9 +25,9 @@ public class BookController {
 	private Logger logger = LoggerFactory.getLogger(BookController.class);
 	
 	@Autowired
-	private iBookService bookService;
+	private IBookService bookService;
 
-	public BookController(iBookService bookService) {		
+	public BookController(IBookService bookService) {		
 		this.bookService = bookService;
 	}
 	

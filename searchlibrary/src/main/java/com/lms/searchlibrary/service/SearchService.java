@@ -12,7 +12,7 @@ import com.lms.searchlibrary.bean.BookBean;
 import com.lms.searchlibrary.proxy.AccessLibraryProxy;
 
 @Service
-public class SearchService implements iSearchService{
+public class SearchService implements ISearchService{
 	
 	@Autowired
 	private AccessLibraryProxy accessLibraryProxy;

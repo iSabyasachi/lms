@@ -15,7 +15,7 @@ import com.lms.accesslibrary.entity.Book;
 
 @Repository
 @Transactional
-public class BookDAO extends BaseDAO implements iBookDAO{
+public class BookDAO extends BaseDAO implements IBookDAO{
 	
 	@PersistenceContext
 	EntityManager entityManager;
