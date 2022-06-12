@@ -13,7 +13,7 @@
 		<item key="FilterByLocation" value="false"/>
 		<item key="WorkingSet" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;workingSet workingSetName=&quot;&quot;/&gt;"/>
 		<section name="DialogBoundsSettings">
-			<item key="DIALOG_HEIGHT" value="1548"/>
+			<item key="DIALOG_HEIGHT" value="1008"/>
 			<item key="DIALOG_WIDTH" value="780"/>
 			<item key="DIALOG_X_ORIGIN" value="348"/>
 			<item key="DIALOG_Y_ORIGIN" value="11"/>
