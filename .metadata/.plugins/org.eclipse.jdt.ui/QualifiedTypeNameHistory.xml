@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="javax.persistence.NamedQueries"/>
-    <fullyQualifiedTypeName name="com.lms.recommendlibrary.proxy.AccessLibraryProxy"/>
-    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
-    <fullyQualifiedTypeName name="java.util.stream.Collector"/>
-    <fullyQualifiedTypeName name="java.util.stream.Collectors"/>
     <fullyQualifiedTypeName name="org.springframework.cloud.openfeign.EnableFeignClients"/>
     <fullyQualifiedTypeName name="com.lms.searchlibrary.service.iSearchService"/>
     <fullyQualifiedTypeName name="com.lms.searchlibrary.bo.iSearchBO"/>
@@ -60,4 +54,10 @@
     <fullyQualifiedTypeName name="design.pattern.mediator.ControlTower"/>
     <fullyQualifiedTypeName name="design.pattern.command.InstrumentPanel"/>
     <fullyQualifiedTypeName name="design.pattern.interpreter.AbstractSyntaxTree"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.ComponentScan"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.AnnotationConfigApplicationContext"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="com.spring.springdemo.Vehicle"/>
 </qualifiedTypeNameHistroy>
