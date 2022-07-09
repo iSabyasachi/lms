@@ -341,3 +341,4 @@ CREATE TABLE IF NOT EXISTS `full-stack-lms`.`t_book_item` (
 ) 
 ENGINE=InnoDB
 AUTO_INCREMENT = 1;
+

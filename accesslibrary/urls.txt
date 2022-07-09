@@ -33,3 +33,6 @@ http://localhost:8765/access/getbooksbyuserid/userid/2
 http://localhost:8765/recommend/getcbrecommendation/type/BOOK/userid/2
 http://localhost:8765/search/searchbyauthor/author/Alicia
 http://localhost:8765/search/searchallbooks
+
+OKTA :
+https://dev-09654858-admin.okta.com/admin/getting-started
