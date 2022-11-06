@@ -6,6 +6,7 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\workspace\springsecsection9"/>
 			<item value="C:\workspace\spring-security"/>
 			<item value="C:\workspace\spring-demo"/>
 			<item value="C:\workspace\design\designpatterns"/>
