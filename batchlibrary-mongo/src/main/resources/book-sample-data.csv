@@ -1,0 +1,2 @@
+id, isbn, bar_code, title, type, subject, publisher, publicationdate, booklanguage, numberofpages, author, description, genre, isreferenceonly, active, unit, racknum, status
+1, '1108469299', 100, 'Dinosaurs','BOOK','A Concise Natural History','Cambridge University Press',2022-08-12,'ENGLISH',534, 'David E. Fastovsky', 'Paperback','SCIENCE', 0, 1, 1, 'A01','NEW'

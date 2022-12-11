@@ -6,6 +6,10 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\workspace\lms\batchlibrary-mongo"/>
+			<item value="C:\workspace\lms\batchlibrary"/>
+			<item value="C:\workspace\lms\framework"/>
+			<item value="C:\workspace\framework"/>
 			<item value="C:\workspace\springsecsection9"/>
 			<item value="C:\workspace\spring-security"/>
 			<item value="C:\workspace\spring-demo"/>
@@ -50,13 +54,10 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
-			<item value="war"/>
 		</list>
 		<list key="groupId">
-			<item value="com.spring"/>
 		</list>
 		<list key="artifactId">
-			<item value="spring-demo"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -72,10 +73,12 @@
 	</section>
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="com.lms"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="framework"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>

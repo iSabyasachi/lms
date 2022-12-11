@@ -1,0 +1,8 @@
+Problem Statement :
+
+A Company named "LMS" is in the business of renting Notes, Books, Magazines, Daily or Weekly News Paper & CDs. 
+Notes & Books are sales tax exempt, and CDs and Magazines have a sales tax of 10%.
+CDs can be imported and attracts an import tax of 5%.
+
+Write a renting basket program, which will calculate extended price(qty * (unit_price + tax) * num_of_days) inclusive of tax for each
+item in the basket, total taxes and grand total.

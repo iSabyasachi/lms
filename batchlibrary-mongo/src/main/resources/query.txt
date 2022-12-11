@@ -1,0 +1,11 @@
+//Create User
+
+use test
+db.createUser(
+  {
+    user: "lmsapp",
+    pwd:  "mongo007",
+    roles: [ { role: "readWrite", db: "test" },
+             { role: "read", db: "reporting" } ]
+  }
+)

@@ -1,3 +1,3 @@
-GitRepositoriesView.GitDirectories=C\:\\advance\\.git;C\:\\workspace\\lms\\.git;C\:\\workspace\\softwaredesign\\.git;C\:\\workspace\\design\\.git;
-GitRepositoriesView.GitDirectories.relative=C\:\\advance\\.git;.git;C\:\\workspace\\softwaredesign\\.git;C\:\\workspace\\design\\.git;
+GitRepositoriesView.GitDirectories=C\:\\advance\\.git;C\:\\workspace\\lms\\.git;C\:\\workspace\\softwaredesign\\.git;C\:\\test\\.git;C\:\\workspace\\design\\.git;
+GitRepositoriesView.GitDirectories.relative=C\:\\advance\\.git;.git;C\:\\workspace\\softwaredesign\\.git;C\:\\test\\.git;C\:\\workspace\\design\\.git;
 eclipse.preferences.version=1
